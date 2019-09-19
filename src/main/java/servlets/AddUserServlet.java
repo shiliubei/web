@@ -1,6 +1,5 @@
 package servlets;
 
-import dao.UserDAO;
 import models.User;
 import services.UserService;
 
@@ -15,7 +14,6 @@ import java.io.IOException;
 @WebServlet("/addUser")
 public class AddUserServlet extends HttpServlet {
 
-   // private UserDAO userDAO = new UserDAO();
     private UserService userService = new UserService();
 
     @Override

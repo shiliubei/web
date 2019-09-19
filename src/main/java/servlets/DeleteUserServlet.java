@@ -13,7 +13,6 @@ import java.io.IOException;
 @WebServlet("/delete")
 public class DeleteUserServlet extends HttpServlet {
 
-    // private UserDAO userDAO = new UserDAO();
     private UserService userService = new UserService();
 
     @Override

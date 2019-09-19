@@ -1,6 +1,5 @@
 package servlets;
 
-import dao.UserDAO;
 import models.User;
 import services.UserService;
 
@@ -17,13 +16,10 @@ import java.util.ArrayList;
 @WebServlet("/usersList")
 public class UsersListServlet extends HttpServlet {
 
-
-    //private UserDAO userDAO = new UserDAO();
     private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // ArrayList<User> users = (ArrayList<User>) userDAO.getAllUsers();
         ArrayList<User> users = (ArrayList<User>) userService.getAllUsers();
         req.setAttribute("usersFromServer", users);
         RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/usersList.jsp");

@@ -1,6 +1,5 @@
 package servlets;
 
-import dao.UserDAO;
 import models.User;
 import services.UserService;
 
@@ -10,13 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 
 @WebServlet("/edit")
 public class EditUserServlet extends HttpServlet {
 
-    //private UserDAO userDAO = new UserDAO();
     private UserService userService = new UserService();
 
     @Override
