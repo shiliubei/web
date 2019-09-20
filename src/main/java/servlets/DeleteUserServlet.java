@@ -1,6 +1,6 @@
 package servlets;
 
-import services.UserService;
+import services.JDBCUserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +13,12 @@ import java.io.IOException;
 @WebServlet("/delete")
 public class DeleteUserServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private JDBCUserService JDBCUserService = new JDBCUserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.parseInt(req.getParameter("id"));
-        userService.deleteUserById(id);
+        JDBCUserService.deleteUserById(id);
         resp.sendRedirect("/usersList");
     }
 

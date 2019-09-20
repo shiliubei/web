@@ -1,7 +1,7 @@
 package servlets;
 
 import models.User;
-import services.UserService;
+import services.JDBCUserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +14,12 @@ import java.io.IOException;
 @WebServlet("/edit")
 public class EditUserServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private JDBCUserService JDBCUserService = new JDBCUserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.parseInt(req.getParameter("id"));
-        User user = userService.selectUserById(id);
+        User user = JDBCUserService.selectUserById(id);
         req.setAttribute("user", user);
         req.getServletContext().getRequestDispatcher("/jsp/editUser.jsp").forward(req, resp);
     }
@@ -31,7 +31,7 @@ public class EditUserServlet extends HttpServlet {
         String email = req.getParameter("email");
         String country = req.getParameter("country");
         User user = new User(id, name, email, country);
-        userService.updateUser(user);
+        JDBCUserService.updateUser(user);
         resp.sendRedirect("/usersList");
     }
 }

@@ -1,7 +1,7 @@
 package servlets;
 
 import models.User;
-import services.UserService;
+import services.JDBCUserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,11 +16,11 @@ import java.util.ArrayList;
 @WebServlet("/usersList")
 public class UsersListServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private JDBCUserService JDBCUserService = new JDBCUserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<User> users = (ArrayList<User>) userService.getAllUsers();
+        ArrayList<User> users = (ArrayList<User>) JDBCUserService.getAllUsers();
         req.setAttribute("usersFromServer", users);
         RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/usersList.jsp");
         dispatcher.forward(req, resp);
