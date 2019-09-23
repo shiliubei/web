@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet("/usersList")
@@ -25,7 +26,7 @@ public class UsersListServlet extends HttpServlet {
        // ArrayList<User> users = (ArrayList<User>) JDBCUserService.getAllUsers();
 
         try {
-            ArrayList<User> users = (ArrayList<User>) HibernateUserSevice.genInstance().getAllUsers();
+            List<User> users = HibernateUserSevice.genInstance().getAllUsers();
             req.setAttribute("usersFromServer", users);
         } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();

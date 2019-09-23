@@ -16,16 +16,17 @@ public class HibernateUserSevice implements UserService {
     private static HibernateUserSevice hibernateUserSevice;
     private SessionFactory sessionFactory;
 
-    private HibernateUserSevice(SessionFactory sessionFactory) {this.sessionFactory = sessionFactory;}
+    private HibernateUserSevice(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-    public static HibernateUserSevice genInstance() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
-        if (hibernateUserSevice == null){
+    public static HibernateUserSevice genInstance() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        if (hibernateUserSevice == null) {
             hibernateUserSevice = new HibernateUserSevice(DBHelper.getSessionFactory());
         }
         return hibernateUserSevice;
     }
 
-    private UserDAO userDAO = new HIbernateUserDAO();
     @Override
     public List<User> getAllUsers() {
         Session session = sessionFactory.openSession();

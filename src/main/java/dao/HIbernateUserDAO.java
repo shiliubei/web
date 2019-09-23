@@ -36,7 +36,6 @@ public class HIbernateUserDAO implements UserDAO {
 
     @Override
     public User selectUserById(Integer id) {
-        //Transaction tr1 = session.beginTransaction();
         User user = (User) session.get(User.class, id);
         return user;
     }
@@ -54,6 +53,5 @@ public class HIbernateUserDAO implements UserDAO {
         Transaction tr1 = session.beginTransaction();
         session.update(user);
         tr1.commit();
-        //session.close();
     }
 }
