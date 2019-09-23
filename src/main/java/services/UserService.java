@@ -1,18 +1,20 @@
 package services;
 
+import dao.UserDAO;
 import models.User;
 
 import java.util.List;
 
 public interface UserService {
-    public List<User> getAllUsers();
 
-    public void addUser(User user);
+    List<User> getAllUsers();
 
-    public void deleteUserById(Integer id);
+    void addUser(User user);
 
-    public User selectUserById(Integer id);
+    void deleteUserById(Integer id);
 
-    public void updateUser(User user);
+    User selectUserById(Integer id);
+
+    void updateUser(User user);
 
 }

@@ -16,9 +16,13 @@ public class DBHelper {
 
     private static SessionFactory sessionFactory;
 
-    public static SessionFactory getSessionFactory() throws ClassNotFoundException, IllegalAccessException, SQLException, InstantiationException {
+    public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-            sessionFactory = createSessionFactory();
+            try {
+                sessionFactory = createSessionFactory();
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+                e.printStackTrace();
+            }
         }
         return sessionFactory;
     }
@@ -34,7 +38,7 @@ public class DBHelper {
         configuration.setProperty("hibernate.connection.username", "root");
         configuration.setProperty("hibernate.connection.password", "root");
         configuration.setProperty("hibernate.show_sql", "true");
-       // configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+        // configuration.setProperty("hibernate.hbm2ddl.auto", "create");
         return configuration;
     }
 

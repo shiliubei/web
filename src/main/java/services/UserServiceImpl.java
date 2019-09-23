@@ -1,14 +1,17 @@
 package services;
 
-import dao.JDBCUserDAO;
+import dao.HIbernateUserDAO;
 import dao.UserDAO;
 import models.User;
 
 import java.util.List;
 
-public class JDBCUserService implements UserService {
+public class UserServiceImpl implements UserService {
+    private static UserServiceImpl userServiceImpl = new UserServiceImpl();
 
-    private UserDAO userDAO = new JDBCUserDAO();
+    private UserDAO userDAO = new HIbernateUserDAO();
+
+    public static UserServiceImpl getInstance(){ return userServiceImpl; }
 
     @Override
     public List<User> getAllUsers() {

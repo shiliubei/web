@@ -10,9 +10,6 @@ import java.util.List;
 public class JDBCUserDAO implements UserDAO {
 
 
-    public JDBCUserDAO() {
-    }
-
     protected Connection getConnection() {
         Configuration conf = new Configuration();
         Connection connection = conf.getJDBCConnection();

@@ -1,8 +1,8 @@
 package servlets;
 
 import models.User;
-import services.HibernateUserSevice;
-import services.JDBCUserService;
+import services.UserServiceImpl;
+import services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 
 @WebServlet("/addUser")
 public class AddUserServlet extends HttpServlet {
 
-    private JDBCUserService JDBCUserService = new JDBCUserService();
+    private UserService userService = UserServiceImpl.getInstance();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,12 +29,7 @@ public class AddUserServlet extends HttpServlet {
         String email = req.getParameter("email");
         String country = req.getParameter("country");
         User user = new User(name, email, country);
-        //JDBCUserService.addUser(user);
-        try {
-            HibernateUserSevice.genInstance().addUser(user);
-        } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
+        userService.addUser(user);
         resp.sendRedirect("/usersList");
 
     }
