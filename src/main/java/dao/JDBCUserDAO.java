@@ -1,6 +1,6 @@
 package dao;
 
-import configs.Configuration;
+import configs.DBHelper;
 import models.User;
 
 import java.sql.*;
@@ -11,8 +11,8 @@ public class JDBCUserDAO implements UserDAO {
 
 
     protected Connection getConnection() {
-        Configuration conf = new Configuration();
-        Connection connection = conf.getJDBCConnection();
+        DBHelper dbHelper = new DBHelper();
+        Connection connection = dbHelper.getConnection();
         return connection;
     }
 

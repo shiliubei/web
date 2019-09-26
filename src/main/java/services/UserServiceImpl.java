@@ -1,17 +1,20 @@
 package services;
 
-import dao.HIbernateUserDAO;
 import dao.UserDAO;
+import fabrica.UserDaoFactory;
 import models.User;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
+    private UserDAO userDAO = UserDaoFactory.getInstance().getDao();
+
     private static UserServiceImpl userServiceImpl = new UserServiceImpl();
 
-    private UserDAO userDAO = new HIbernateUserDAO();
-
-    public static UserServiceImpl getInstance(){ return userServiceImpl; }
+    public static UserServiceImpl getInstance() {
+        return userServiceImpl;
+    }
 
     @Override
     public List<User> getAllUsers() {

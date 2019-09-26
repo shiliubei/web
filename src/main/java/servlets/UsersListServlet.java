@@ -1,5 +1,6 @@
 package servlets;
 
+import configs.PropertyReader;
 import models.User;
 import services.UserServiceImpl;
 import services.UserService;
@@ -19,12 +20,14 @@ public class UsersListServlet extends HttpServlet {
 
     private UserService userService = UserServiceImpl.getInstance();
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = userService.getAllUsers();
         req.setAttribute("usersFromServer", users);
         RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/usersList.jsp");
         dispatcher.forward(req, resp);
+
     }
 
 }

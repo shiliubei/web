@@ -17,7 +17,6 @@ public class AddUserServlet extends HttpServlet {
 
     private UserService userService = UserServiceImpl.getInstance();
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/jsp/addUser.jsp").forward(req, resp);
