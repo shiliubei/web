@@ -12,24 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/addUser")
+@WebServlet("/adminAdd")
 public class AddUserServlet extends HttpServlet {
 
     private UserService userService = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher("/jsp/addUser.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher("/jsp/adminAdd.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        String email = req.getParameter("email");
-        String country = req.getParameter("country");
+        String email = req.getParameter("password");
+        String country = req.getParameter("role");
         User user = new User(name, email, country);
         userService.addUser(user);
-        resp.sendRedirect("/usersList");
+        resp.sendRedirect("/adminUsersList");
 
     }
 }

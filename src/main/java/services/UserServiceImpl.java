@@ -41,4 +41,15 @@ public class UserServiceImpl implements UserService {
         userDAO.updateUser(user);
     }
 
+    public User getUserByNameAndPassword(String name, String password) {
+        for (User user : getAllUsers()) {
+            if (user.getName().equals(name) &&
+                    user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+
+    }
+
 }

@@ -15,8 +15,8 @@
     <form method="post" action="/edit">
         <input type="hidden" name="id"  value="<c:out value='${user.id}' />" /> <br>
         <input type="text" name="name"  value="<c:out value='${user.name}' />" /> <br>
-        <input type="text" name="email" value="<c:out value='${user.email}'  />" /> <br>
-        <input type="text" name="country" value="<c:out value='${user.country}'  />" /> <br>
+        <input type="text" name="password" value="<c:out value='${user.password}'  />" /> <br>
+        <input type="text" name="role" value="<c:out value='${user.role}'  />" /> <br>
         <input type="submit" value="Edit user">
     </form>
 </div>

@@ -11,7 +11,7 @@
 
 You can add user
 <div>
-    <a href="/addUser">Add user</a>
+    <a href="/adminAdd">Add user</a>
 </div>
 
 <div>
@@ -22,16 +22,16 @@ You can add user
         <tr>
             <th>User id</th>
             <th>User name</th>
-            <th>Email</th>
-            <th>Country</th>
+            <th>Password</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
         <c:forEach items="${usersFromServer}" var="user">
             <tr>
                 <td>${user.id}</td>
                 <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.country}</td>
+                <td>${user.password}</td>
+                <td>${user.role}</td>
                 <td>
                     <a href="/edit?id=<c:out value='${user.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;

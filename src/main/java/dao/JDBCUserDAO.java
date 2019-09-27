@@ -26,8 +26,8 @@ public class JDBCUserDAO implements UserDAO {
                 User userList = new User();
                 userList.setId(rs.getInt(1));
                 userList.setName(rs.getString(2));
-                userList.setEmail(rs.getString(3));
-                userList.setCountry(rs.getString(4));
+                userList.setPassword(rs.getString(3));
+                userList.setRole(rs.getString(4));
                 list.add(userList);
             }
         } catch (SQLException e) {
@@ -38,14 +38,14 @@ public class JDBCUserDAO implements UserDAO {
 
     public void addUser(User user) {
         String userName = user.getName();
-        String userEmail = user.getEmail();
-        String userCountry = user.getCountry();
+        String userEmail = user.getPassword();
+        String userRole = user.getRole();
 
         try (Connection connection = getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO users(name, email, country) VALUES(?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO users(name, email, role) VALUES(?,?,?)");
             ps.setString(1, userName);
             ps.setString(2, userEmail);
-            ps.setString(3, userCountry);
+            ps.setString(3, userRole);
             ps.execute();
             ps.close();
         } catch (SQLException e) {
@@ -68,7 +68,7 @@ public class JDBCUserDAO implements UserDAO {
     public User selectUserById(Integer id) {
         User user = null;
         try (Connection connection = getConnection()) {
-            String sql = "SELECT id,name,email,country FROM users WHERE id =?";
+            String sql = "SELECT id,name,email,role FROM users WHERE id =?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
@@ -77,8 +77,8 @@ public class JDBCUserDAO implements UserDAO {
             while (rs.next()) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
-                String country = rs.getString("country");
-                user = new User(id, name, email, country);
+                String role = rs.getString("role");
+                user = new User(id, name, email, role);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,11 +88,11 @@ public class JDBCUserDAO implements UserDAO {
 
     public void updateUser(User user) {
         try (Connection connection = getConnection()) {
-            String sql = "UPDATE users SET name=?, email=?, country=? WHERE id=?";
+            String sql = "UPDATE users SET name=?, email=?, role=? WHERE id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, user.getName());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getCountry());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getRole());
             statement.setInt(4, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {

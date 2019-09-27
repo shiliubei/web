@@ -11,24 +11,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String email;
-    private String country;
+    private String password;
+    private String role;
 
     public User() {
     }
 
-    public User(Integer id, String name, String email, String country) {
+    public User(Integer id, String name, String password, String role) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.country = country;
+        this.password = password;
+        this.role = role;
 
     }
 
-    public User(String name, String email, String country) {
+    public User(String name, String password, String role) {
         this.name = name;
-        this.email = email;
-        this.country = country;
+        this.password = password;
+        this.role = role;
 
     }
 
@@ -48,19 +48,19 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getCountry() {
-        return country;
+    public String getRole() {
+        return role;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

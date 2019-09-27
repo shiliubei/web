@@ -29,10 +29,10 @@ public class EditUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
-        String email = req.getParameter("email");
-        String country = req.getParameter("country");
-        User user = new User(id, name, email, country);
+        String email = req.getParameter("password");
+        String role = req.getParameter("role");
+        User user = new User(id, name, email, role);
         userService.updateUser(user);
-        resp.sendRedirect("/usersList");
+        resp.sendRedirect("/adminUsersList");
     }
 }
