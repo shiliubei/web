@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 @WebFilter(urlPatterns = {"/user", "/adminAdd", "/adminEditUser", "/login", "/adminUsersList", "/edit"})
-public class UserFilter implements Filter {
+public class Filter implements javax.servlet.Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

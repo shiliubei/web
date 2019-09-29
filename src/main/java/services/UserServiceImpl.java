@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private UserDAO userDAO = UserDaoFactory.getInstance().getDao();
+    private UserDAO userDAO = UserDaoFactory.getInstance().getUserDao();
 
     private static UserServiceImpl userServiceImpl = new UserServiceImpl();
 

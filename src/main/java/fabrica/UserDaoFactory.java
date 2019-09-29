@@ -5,16 +5,16 @@ import dao.UserDAO;
 
 public interface UserDaoFactory {
 
-    UserDAO getDao();
+    UserDAO getUserDao();
 
     static UserDaoFactory getInstance(){
 
         String method = PropertyReader.getProperty("method");
         if (method.equals("hibernate")) {
-            return new HibernateUserDaoFactory();
+            return new HibernateDaoFactory();
         }
         if (method.equals("jdbc")) {
-            return new JdbcUserDaoFactory();
+            return new JdbcDaoFactory();
         }
         return null;
     }
