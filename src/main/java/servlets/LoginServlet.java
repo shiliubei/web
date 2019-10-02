@@ -31,13 +31,15 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             if (user.getRole().equals("admin")) {
                 req.getSession().setAttribute("user", user);
-                resp.sendRedirect("adminUsersList");
+                resp.sendRedirect("admin/UsersList");
             } else if (user.getRole().equals("user")) {
                 req.getSession().setAttribute("user", user);
                 resp.sendRedirect("/user");
             } else {
                 resp.sendRedirect("/login");
             }
+        } else{
+            req.getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
         }
     }
 }

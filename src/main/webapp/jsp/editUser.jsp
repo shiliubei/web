@@ -8,11 +8,11 @@
 </head>
 <body>
 <div >
-    <a href="/usersList">Users list</a>
+    <a href="/admin/UsersList">Users list</a>
     <div>
         Add user
     </div>
-    <form method="post" action="/edit">
+    <form method="post" action="/admin/edit">
         <input type="hidden" name="id"  value="<c:out value='${user.id}' />" /> <br>
         <input type="text" name="name"  value="<c:out value='${user.name}' />" /> <br>
         <input type="text" name="password" value="<c:out value='${user.password}'  />" /> <br>

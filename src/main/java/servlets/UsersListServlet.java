@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/adminUsersList")
+@WebServlet("/admin/UsersList")
 public class UsersListServlet extends HttpServlet {
 
     private UserService userService = UserServiceImpl.getInstance();

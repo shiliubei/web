@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-    <a href="/adminUsersList">Users list</a>
+    <a href="/admin/UsersList">Users list</a>
     <div>
        Hi, it's users page.
     </div>

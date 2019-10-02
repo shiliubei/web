@@ -11,7 +11,7 @@
 
 You can add user
 <div>
-    <a href="/adminAdd">Add user</a>
+    <a href="/admin/Add">Add user</a>
 </div>
 
 <div>
@@ -33,9 +33,9 @@ You can add user
                 <td>${user.password}</td>
                 <td>${user.role}</td>
                 <td>
-                    <a href="/edit?id=<c:out value='${user.id}' />">Edit</a>
+                    <a href="/admin/edit?id=<c:out value='${user.id}' />">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/delete?id=<c:out value='${user.id}' />">Delete</a>
+                    <a href="/admin/delete?id=<c:out value='${user.id}' />">Delete</a>
                 </td>
             </tr>
         </c:forEach>

@@ -2,6 +2,7 @@ package filters;
 
 import models.User;
 
+import javax.servlet.Filter;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +11,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebFilter(urlPatterns = {"/user", "/adminAdd", "/adminEditUser", "/login", "/adminUsersList", "/edit"})
-public class Filter implements javax.servlet.Filter {
+@WebFilter(urlPatterns = {"/*"})
+public class AnonimusFilter
+        implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -27,22 +28,26 @@ public class Filter implements javax.servlet.Filter {
         User user = (User) request.getSession().getAttribute("user");
 
         if (session == null || session.getAttribute("user") == null) {
-            servletRequest.getServletContext().getRequestDispatcher("/login").forward(request, response);
-        } else {
-            if (user.getRole().equals("admin")) {
+           if (request.getRequestURL().toString().contains("login")) {
                 filterChain.doFilter(request, response);
-            } else if (user.getRole().equals("user")) {
-                if (request.getRequestURL().toString().contains("/user")) {
-                    filterChain.doFilter(request, servletResponse);
-                } else {
-                    servletRequest.getServletContext().getRequestDispatcher("/user").forward(request, response);
+            } else {
+                response.sendRedirect("/login");
+            }
+        } else {
+            if (request.getRequestURL().toString().contains("login")) {
+                if (user.getRole().equals("admin")) {
+                    response.sendRedirect("/admin/UsersList");
                 }
+                if (user.getRole().equals("user")) {
+                    response.sendRedirect("/user");
+                }
+            } else{
+                filterChain.doFilter(request, response);
             }
 
         }
-
-
     }
+
 
     @Override
     public void destroy() {

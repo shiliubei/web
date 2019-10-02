@@ -8,11 +8,11 @@
 </head>
 <body>
 <div>
-    <a href="/adminUsersList">Users list</a>
+    <a href="/admin/UsersList">Users list</a>
     <div>
         Add user
     </div>
-    <form method="post" action="/adminAdd">
+    <form method="post" action="/admin/Add">
         <input type="text" name="name"> <br>
         <input type="text" name="password"><br>
         <input type="text" name="role"><br>
