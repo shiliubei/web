@@ -21,12 +21,16 @@ public class AdminFilter implements javax.servlet.Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         User user = (User) request.getSession().getAttribute("user");
-
-        if (user.getRole().equals("admin")) {
-            filterChain.doFilter(request, response);
-        } else {
-            response.sendRedirect("/user");
+        if(user!=null){
+            if (user.getRole().equals("admin")) {
+                filterChain.doFilter(request, response);
+            } else {
+                response.sendRedirect("/user");
+            }
+        }else {
+            response.sendRedirect("/login");
         }
+
     }
 
     @Override

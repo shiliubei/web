@@ -21,9 +21,12 @@ public class UserFilter implements javax.servlet.Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         User user = (User) request.getSession().getAttribute("user");
-
-        if (user.getRole().equals("user") || user.getRole().equals("admin")) {
-            filterChain.doFilter(request, servletResponse);
+        if(user!=null) {
+            if (user.getRole().equals("user") || user.getRole().equals("admin")) {
+                filterChain.doFilter(request, servletResponse);
+            }
+        }else{
+            response.sendRedirect("/login");
         }
 
 
